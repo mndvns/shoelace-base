@@ -13,9 +13,8 @@
   "license": "MIT",
   "main": "public/javascripts/index.js",
   "scripts": [
-    "public/javascripts/index.js"
-  ],
-  "templates": [
+    "public/javascripts/index.js",
+    "public/javascripts/package.js"
   ],
   "styles": [
     "public/stylesheets/index.styl"

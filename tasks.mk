@@ -10,21 +10,26 @@ ORGANIZATION ?= mvanasse
 REPO         ?= $(ORGANIZATION)/$(PROJECT)
 AUTHOR       ?= Michael Vanasse
 
-# JS_FILES      = $(shell find public -type f -name '*.js')
-# CSS_FILES     = $(shell find public -type f -name '*.css')
-# STYL_FILES    = $(shell find public -type f -name '*.styl')
-# PARTIAL_FILES = $(shell find public -type f -name '*.jade')
+JS_FILES      = $(shell find public -type f -name '*.js')
+CSS_FILES     = $(shell find public -type f -name '*.css')
+STYL_FILES    = $(shell find public -type f -name '*.styl')
+PARTIAL_FILES = $(shell find public -type f -name '*.jade')
 
 SHOELACE_BASE     = $(CURDIR)/node_modules/shoelace-base
 SHOELACE_BASE_BIN = $(SHOELACE_BASE)/node_modules/.bin
 
 DIRS  = $(shell cd $(SHOELACE_BASE)/files && find . -type d -name '*[a-zA-Z]' | sed 's/\.\///')
 FILES = $(shell cd $(SHOELACE_BASE)/files && find . -type f                   | sed 's/\.\///')
-# FILES = $(notdir $(shell find $(SHOELACE_BASE)/files -type f                   | sed 's/\.\///'))
 
+define COMPONENT_BUILD
+$(SHOELACE_BASE_BIN)/component build --copy --use $(realpath $(SHOELACE_BASE))/node_modules/component-stylus
+endef
+
+dev     : build test
+build   : components build/build.js build/build.css
 install : node_modules components
 init    : $(DIRS) $(FILES) install
-# redo    : cleanse clean init
+redo    : cleanse clean init
 
 $(DIRS):
 	@mkdir -p $@
@@ -36,34 +41,28 @@ $(FILES):
 node_modules: package.json
 	@npm install
 
-# serve:
-# 	@$(SHOELACE_BASE_BIN)/nodemon $(SHOELACE_BASE)/test.js
-
 serve:
 	@foreman start
 
 components: component.json
 	@$(SHOELACE_BASE_BIN)/component install
 
-build: components build/build.js build/build.css
-
 build/build.css: $(CSS_FILES) $(STYL_FILES)
-	@component build --dev --use $(realpath $(SHOELACE_BASE))/node_modules/component-stylus
+	@$(call COMPONENT_BUILD)
 
 build/build.js: $(JS_FILES)
-	@component build --dev --use $(realpath $(SHOELACE_BASE))/node_modules/component-stylus
-
-template/modal-container.js: $(PARTIAL_FILES)
-	@component convert $<
+	@$(call COMPONENT_BUILD)
 
 clean:
-	rm -fr build components template.js
+	rm -fr build components
 
 cleanse :
 	rm -fr $(CURDIR)/$(FILES) $(CURDIR)/$(DIRS)
 
-test:
-	@./node_modules/.bin/mocha \
-		--require should
+test: selenium
+	@node_modules/.bin/protractor $(CURDIR)/protractorConfig.js
+
+selenium:
+	@node_modules/protractor/bin/install_selenium_standalone
 
 .PHONY: clean init build test
