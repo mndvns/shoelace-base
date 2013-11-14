@@ -1,0 +1,26 @@
+{
+  "name": "shoelace-base",
+  "version": "0.1.0",
+  "description": "Boilerplate setup for shoelace components",
+  "author": "Michael Vanasse",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mvanasse/shoelace-base"
+  },
+  "keywords": [
+    "shoelace",
+    "base"
+  ],
+  "main": "test.js",
+  "dependencies": {
+    "component-builder": "~0.8.3",
+    "component-stylus": "~1.1.3",
+    "nib": "~1.0.1",
+    "component": "~0.18.0",
+    "express": "~3.4.4",
+    "jade": "~0.35.0",
+    "stylus": "~0.40.2",
+    "startup": "~0.3.0"
+  },
+  "license": "MIT"
+}

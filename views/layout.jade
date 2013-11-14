@@ -1,0 +1,26 @@
+!!!
+html(xmlns:ng="http://angularjs.org",
+     data-ng-app=app.name,
+     class="ng-app:" + app.name)#ng-app
+  head
+    title= app.name
+    link(href="/build/build.css", rel="stylesheet")
+    style.
+      html {
+        font-family: 'Helvetica', 'Arial', sans-serif;
+      }
+      main {
+        padding: 40px;
+      }
+    block styles
+  body
+    main
+      h3
+        strong #{app.name}, 
+        span v#{app.version}
+      block main
+    block body
+    block scripts
+    script(src="/build/build.js")
+    script.
+      require("#{app.name}");

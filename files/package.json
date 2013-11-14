@@ -1,0 +1,22 @@
+{
+  "name": "PROJECT",
+  "version": "0.1.0",
+  "description": "DESCRIPTION",
+  "author": "AUTHOR",
+  "keywords": [
+    "shoelace"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/REPO"
+  },
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.x.x"
+  },
+  "dependencies": {
+    "startup": "0.3.0"
+  },
+  "main": "./node_modules/shoelace-base/test.js",
+  "license": "MIT"
+}

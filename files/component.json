@@ -1,0 +1,23 @@
+{
+  "name": "PROJECT",
+  "repo": "REPO",
+  "description": "DESCRIPTION",
+  "version": "0.1.0",
+  "keywords": [
+    "shoelace"
+  ],
+  "dependencies": {
+    "CamShaft/component-angular": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "main": "public/javascripts/index.js",
+  "scripts": [
+    "public/javascripts/index.js"
+  ],
+  "templates": [
+  ],
+  "styles": [
+    "public/stylesheets/index.styl"
+  ]
+}

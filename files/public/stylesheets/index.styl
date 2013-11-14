@@ -1,0 +1,35 @@
+@import '../../../node_modules/nib'
+
+html
+body
+  margin 0
+
+_pad = 20px
+
+.ALIAS-container
+  position fixed
+  top 0
+  height 100%
+  width 100%
+  z-index 10
+  display none
+
+  &.active
+    display block
+
+  .ALIAS
+    position relative
+    top 0
+    background white
+    margin (_pad * 4) auto
+    z-index 2
+    max-width 500px - (_pad * 4)
+    box-shadow 0 3px 16px rgba(black, .4)
+
+  .bg
+    position absolute
+    top 0
+    height 100%
+    width 100%
+    background rgba(black, 0.5)
+    z-index 1
