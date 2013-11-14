@@ -24,7 +24,7 @@ FILES = $(shell cd $(SHOELACE_BASE)/files && find . -type f                   | 
 
 install : node_modules components
 init    : $(DIRS) $(FILES) install
-redo    : cleanse clean init
+# redo    : cleanse clean init
 
 $(DIRS):
 	@mkdir -p $@
@@ -62,5 +62,8 @@ clean:
 cleanse :
 	rm -fr $(CURDIR)/$(FILES) $(CURDIR)/$(DIRS)
 
-.PHONY: clean init build
+test:
+	@./node_modules/.bin/mocha \
+		--require should
 
+.PHONY: clean init build test

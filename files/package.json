@@ -15,7 +15,8 @@
     "npm": "1.x.x"
   },
   "dependencies": {
-    "startup": "0.3.0"
+    "startup": "0.3.0",
+    "shoelace-base": "0.1.0"
   },
   "main": "./node_modules/shoelace-base/test.js",
   "license": "MIT"
