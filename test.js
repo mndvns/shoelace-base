@@ -5,7 +5,7 @@ var pkg = require(join(cwd,'package.json'));
 
 var app = module.exports = express();
 
-app.set('views', join(cwd, 'views'))
+app.set('views', join(cwd, 'tests/views'))
 app.set('view engine', 'jade');
 app.use(express.static(cwd));
 
@@ -17,5 +17,5 @@ app.use(function(req, res, next) {
 });
 
 app.get('/', function(req, res) {
-  res.render('test');
+  res.render('index');
 })

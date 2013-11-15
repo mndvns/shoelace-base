@@ -13,11 +13,7 @@
   ],
   "main": "test.js",
   "dependencies": {
-  },
-  "devDependencies": {
-    "startup": "~0.3.0",
-    "selenium-webdriver": "~2.37.0",
-    "protractor": "~0.12.1"
+    "startup": "~0.3.0"
   },
   "license": "MIT"
 }

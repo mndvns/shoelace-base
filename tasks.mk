@@ -65,4 +65,4 @@ test: selenium
 selenium:
 	@node_modules/protractor/bin/install_selenium_standalone
 
-.PHONY: clean init build test
+.PHONY: clean init build test dev install redo

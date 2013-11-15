@@ -12,7 +12,7 @@ var webdriver = require('selenium-webdriver');
  * Define module elements.
  */
 
-var section = tractor.findElement(protractor.By.css('[data-ALIAS-start]'))
+var section = tractor.findElement(protractor.By.css('[data-ALIAS]'))
 var container = tractor.findElement(protractor.By.css('.ALIAS-container'));
 
 /**

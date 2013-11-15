@@ -6,49 +6,66 @@ var angular = window.angular || require('angular');
 var NAME = angular.module('PROJECT', []);
 
 /**
+ * Append a unique element to `body`
+ * as `NAMEGroup`. This lets IE7+
+ * handle its contents properly.
+ */
+
+var body = angular.element(document.body);
+var NAMEGroup = document.createElement('div');
+NAMEGroup.id = 'ALIAS';
+document.body.appendChild(NAMEGroup);
+
+/**
  * Expose NAME.
  */
 
 exports = module.exports = NAME;
 
+/**
+ * Define ALIAS directive.
+ */
+
 exports.directive('ALIAS_CC', function($parse) {
   return {
     restrict: 'A',
     link: function(scope, element, attr) {
+      var active = 'ALIAS-container'
 
-      var content = angular.element(element[1]);
+      var content = element.next();
       content.remove();
-      content.addClass('ALIAS');
+      content = content[0];
+      content.className = 'ALIAS';
 
-      var container = angular.element(document.createElement('div'));
-      container.addClass('ALIAS-container');
-      container.append(content);
+      var container = document.createElement('div');
+      container.className = active;
+      container.appendChild(content);
 
-      var bg = angular.element(document.createElement('div'));
-      bg.addClass('bg');
-      bg.on('click', close);
-      container.append(bg);
+      var bg = document.createElement('div');
+      bg.className = 'bg';
+      bg.onclick = close;
+      container.appendChild(bg);
 
-      var link = angular.element(element[0]);
+      var link = element;
       link.attr('href', 'javascript:;');
       link.on('click', open);
 
-      document.body.appendChild(container[0]);
+      NAMEGroup.appendChild(container);
 
       scope.open = open;
       function open() {
-        container.addClass('active');
+        container.className = active + ' active';
       }
 
       scope.close = close;
       function close() {
-        container.removeClass('active');
+        container.className = active;
       }
 
       scope.$on('$destroy', function() {
-        document.body.removeChild(container[0]);
+        document.body.removeChild(container);
       });
+
     }
   };
 });
-
